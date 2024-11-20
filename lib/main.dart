@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'ExpTracker',
       home: const NavigationMenu(),
+      debugShowCheckedModeBanner: false, // Menyembunyikan label "Debug"
     );
   }
 }

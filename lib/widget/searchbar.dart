@@ -1,4 +1,4 @@
-import 'package:budgetku/style/settings.dart';
+import '../style/settings.dart';
 import 'package:flutter/material.dart';
 
 class Pencarian extends StatelessWidget {

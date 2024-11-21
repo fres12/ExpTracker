@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../style/settings.dart';
+import '../style/app_style.dart';
 
 class Beranda extends StatelessWidget {
   const Beranda({Key? key}) : super(key: key);
@@ -6,19 +8,20 @@ class Beranda extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+      backgroundColor: TColors.background,
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+        toolbarHeight: 71,
+        backgroundColor: TColors.background,
         elevation: 0,
-        title: Text(
-          'Beranda',
-          style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                color: Colors.black,
-                fontSize: 20,
-              ),
-        ),
         centerTitle: true,
-      ),
+        title: Padding(
+          padding: TPosition.topnavbar, // Tambahkan padding di sekitar teks
+          child: Text(
+            'Beranda',
+            style: AppStyle.header, // Gunakan style yang sesuai
+          ),
+        ),
+      ),      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

@@ -1,6 +1,6 @@
-import 'package:budgetku/style/hover_tile.dart';
-import 'package:budgetku/style/settings.dart';
-import 'package:budgetku/widget/searchbar.dart';
+import '../style/hover_tile.dart';
+import '../style/settings.dart';
+import '../widget/searchbar.dart';
 import 'package:flutter/material.dart';
 import '../style/app_style.dart';
 import '../data/data_item.dart';
@@ -12,46 +12,40 @@ class ListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: TColors.background,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(71), // Tinggi AppBar
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border(
-              bottom: BorderSide(
-                color: TColors.outline, // Warna outline di bawah
-                width: 0.5, // Ketebalan outline
+  return Scaffold(
+    backgroundColor: TColors.background,
+    appBar: AppBar(
+      automaticallyImplyLeading: false, // Hilangkan back button default
+      toolbarHeight: 71, 
+      backgroundColor: Colors.white,
+      elevation: 0, 
+      flexibleSpace: Padding(
+        padding: TPosition.topnavbar,
+        child: Stack(
+          children: [
+            // Teks di tengah
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                'List Item',
+                style: AppStyle.header,
               ),
             ),
-          ),
-          padding: TPosition.topnavbar,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 40),
-                      child: Text(
-                        'List Item',
-                        style: AppStyle.header,
-                      ),
-                    )),
-              ),
-              IconButton(
+            // Ikon di kanan atas
+            Align(
+              alignment: Alignment.centerRight,
+              child: IconButton(
                 icon: const Icon(Icons.add),
                 onPressed: () {
-                  // Tambahkan aksi untuk ikon
+                  // Aksi untuk tombol tambah
                 },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
-      body: SingleChildScrollView(
+    ),
+    body: SingleChildScrollView(
         // Membuat body dapat discroll
         child: Container(
           margin: TPosition.marginPageDefault,

@@ -23,26 +23,34 @@ class HoverableTile extends StatefulWidget {
 class _HoverableTileState extends State<HoverableTile> {
   bool _isTapped = false;
 
-  void _handleTap() {
+  void _handleTapDown(TapDownDetails details) {
     setState(() => _isTapped = true);
-    Future.delayed(const Duration(milliseconds: 300), () {
-      if (mounted) {
-        setState(() => _isTapped = false);
-      }
-    });
+  }
+
+  void _handleTapUp(TapUpDetails details) {
+    setState(() => _isTapped = false);
     widget.onTap();
+  }
+
+  void _handleTapCancel() {
+    setState(() => _isTapped = false);
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _handleTap,
+      onTapDown: _handleTapDown,
+      onTapUp: _handleTapUp,
+      onTapCancel: _handleTapCancel,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 150), // Percepat animasi
         padding: widget.padding,
         decoration: BoxDecoration(
-          color: _isTapped ? Colors.grey[200] : Colors.white,
-          borderRadius: BorderRadius.circular(12.0),
+          color: _isTapped ? Colors.grey[300] : Colors.white,
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: _isTapped
+              ? [BoxShadow(color: Colors.grey.withOpacity(0.5))]
+              : [],
         ),
         child: Row(
           children: [

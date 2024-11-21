@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MaterialApp(
-    home: DetailItemPage(),
-  ));
-}
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class DetailItemPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Detail Item'),
         leading: IconButton(
@@ -47,7 +43,7 @@ class DetailItemPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(40),
                     ),
                     child: Icon(
-                      Icons.storage, // Replace with appropriate icon
+                      Iconsax.strongbox, // Replace with appropriate icon
                       color: Colors.blue,
                       size: 40,
                     ),
@@ -108,7 +104,7 @@ class DetailItemPage extends StatelessWidget {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red[100], // Background color
-                    foregroundColor: Colors.red,     // Text and icon color
+                    foregroundColor: Colors.red, // Text and icon color
                     minimumSize: Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),

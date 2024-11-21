@@ -1,3 +1,4 @@
+import 'package:cobacoba/screen/edit.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,6 +11,7 @@ class DetailItemPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Detail Item'),
         leading: IconButton(
@@ -22,7 +24,10 @@ class DetailItemPage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.edit),
             onPressed: () {
-              // Handle edit action
+               Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EditScreen()),
+                    );
             },
           ),
         ],

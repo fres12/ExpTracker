@@ -1,3 +1,5 @@
+import 'package:cobacoba/screen/detail.dart';
+
 import '../style/hover_tile.dart';
 import '../style/settings.dart';
 import '../widget/searchbar.dart';
@@ -86,7 +88,12 @@ class ListScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return HoverableTile(
                       padding: TPosition.listItem, // Jarak antar item
-                      onTap: () {}, //tampilkan detail
+                      onTap: () {
+                         Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => DetailItemPage()),
+                    );
+                      },
                       title: Text(
                         item[index].nama_item, // Judul
                         overflow: TextOverflow.ellipsis, //Menambah elipsis\

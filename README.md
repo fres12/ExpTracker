@@ -1,4 +1,4 @@
-# budgetku
+# ExpTracker
 
 A new Flutter project.
 

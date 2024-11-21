@@ -38,6 +38,12 @@ class ListScreen extends StatelessWidget {
                 icon: const Icon(Icons.add),
                 onPressed: () {
                   // Aksi untuk tombol tambah
+                  
+                  // Tambahkan aksi untuk ikon
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TambahScreen()),
+                  );
                 },
               ),
             ),

@@ -130,18 +130,6 @@ class Beranda extends StatelessWidget {
                         expiry: '4 hari',
                         color: Color.fromRGBO(244, 164, 84, 1),
                       ),
-                      ItemTile(
-                        name: 'Sari roti',
-                        category: 'Makanan',
-                        expiry: '4 hari',
-                        color: Color.fromRGBO(244, 164, 84, 1),
-                      ),
-                      ItemTile(
-                        name: 'Facewash',
-                        category: 'Perawatan',
-                        expiry: '6 bulan',
-                        color: Colors.green,
-                      ),
                     ],
                   ),
                   const SizedBox(height: 16),

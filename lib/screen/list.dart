@@ -6,52 +6,53 @@ import '../style/app_style.dart';
 import '../data/data_item.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import '../style/functionstyle.dart';
+import '../screen/tambah.dart';
 
 class ListScreen extends StatelessWidget {
   const ListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-  return Scaffold(
-    backgroundColor: TColors.background,
-    appBar: AppBar(
-      automaticallyImplyLeading: false, // Hilangkan back button default
-      toolbarHeight: 71, 
-      backgroundColor: Colors.white,
-      elevation: 0, 
-      flexibleSpace: Padding(
-        padding: TPosition.topnavbar,
-        child: Stack(
-          children: [
-            // Teks di tengah
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                'List Item',
-                style: AppStyle.header,
+    return Scaffold(
+      backgroundColor: TColors.background,
+      appBar: AppBar(
+        automaticallyImplyLeading: false, // Hilangkan back button default
+        toolbarHeight: 71,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        flexibleSpace: Padding(
+          padding: TPosition.topnavbar,
+          child: Stack(
+            children: [
+              // Teks di tengah
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'List Item',
+                  style: AppStyle.header,
+                ),
               ),
-            ),
-            // Ikon di kanan atas
-            Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () {
-                  // Aksi untuk tombol tambah
-                  
-                  // Tambahkan aksi untuk ikon
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TambahScreen()),
-                  );
-                },
+              // Ikon di kanan atas
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: () {
+                    // Aksi untuk tombol tambah
+
+                    // Tambahkan aksi untuk ikon
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => TambahScreen()),
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
-    body: SingleChildScrollView(
+      body: SingleChildScrollView(
         // Membuat body dapat discroll
         child: Container(
           margin: TPosition.marginPageDefault,

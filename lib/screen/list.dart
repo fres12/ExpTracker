@@ -89,11 +89,13 @@ class ListScreen extends StatelessWidget {
                     return HoverableTile(
                       padding: TPosition.listItem, // Jarak antar item
                       onTap: () {
-                        Navigator.push(
+
+                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => DetailItemPage()),
                     );
-                  }, //tampilkan detail
+                      },
+
                       title: Text(
                         item[index].nama_item, // Judul
                         overflow: TextOverflow.ellipsis, //Menambah elipsis\

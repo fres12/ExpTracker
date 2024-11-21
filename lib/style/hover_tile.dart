@@ -43,13 +43,15 @@ class _HoverableTileState extends State<HoverableTile> {
       onTapUp: _handleTapUp,
       onTapCancel: _handleTapCancel,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 150), // Percepat animasi
+        
+        duration: const Duration(milliseconds: 150),
         padding: widget.padding,
         decoration: BoxDecoration(
-          color: _isTapped ? Colors.grey[300] : Colors.white,
-          borderRadius: BorderRadius.circular(8.0),
+          color: _isTapped ? Colors.grey[300] : Colors.white, 
+          borderRadius: BorderRadius.circular(12.0),
           boxShadow: _isTapped
-              ? [BoxShadow(color: Colors.grey.withOpacity(0.5))]
+              ? [BoxShadow(color: Colors.grey.withOpacity(0.7))]
+
               : [],
         ),
         child: Row(

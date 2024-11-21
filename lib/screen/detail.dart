@@ -1,3 +1,4 @@
+import 'package:cobacoba/screen/edit.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
@@ -18,7 +19,10 @@ class DetailItemPage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.edit),
             onPressed: () {
-              // Handle edit action
+               Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EditScreen()),
+                    );
             },
           ),
         ],

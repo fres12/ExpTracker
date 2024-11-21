@@ -43,6 +43,7 @@ class _HoverableTileState extends State<HoverableTile> {
       onTapUp: _handleTapUp,
       onTapCancel: _handleTapCancel,
       child: AnimatedContainer(
+        
         duration: const Duration(milliseconds: 150),
         padding: widget.padding,
         decoration: BoxDecoration(
@@ -50,6 +51,7 @@ class _HoverableTileState extends State<HoverableTile> {
           borderRadius: BorderRadius.circular(12.0),
           boxShadow: _isTapped
               ? [BoxShadow(color: Colors.grey.withOpacity(0.7))]
+
               : [],
         ),
         child: Row(

@@ -89,11 +89,13 @@ class ListScreen extends StatelessWidget {
                     return HoverableTile(
                       padding: TPosition.listItem, // Jarak antar item
                       onTap: () {
+
                          Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => DetailItemPage()),
                     );
                       },
+
                       title: Text(
                         item[index].nama_item, // Judul
                         overflow: TextOverflow.ellipsis, //Menambah elipsis\
@@ -110,7 +112,8 @@ class ListScreen extends StatelessWidget {
                         mainAxisSize:
                             MainAxisSize.min, // Mengurangi ruang di kanan
                         children: [
-                          Text(item[index].sisa, // Sisa hari
+                          Text(item[index].sisa, 
+                          overflow: TextOverflow.ellipsis,// Sisa hari
                               style: getStyleForSisa(item[index].sisanya)),
                           const SizedBox(
                               width: 10), // Jarak antara sisa hari dan ikon

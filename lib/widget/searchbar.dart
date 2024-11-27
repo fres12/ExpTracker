@@ -1,4 +1,4 @@
-import '../style/settings.dart';
+import '../style/app_style.dart';
 import 'package:flutter/material.dart';
 
 class Pencarian extends StatelessWidget {
@@ -7,9 +7,9 @@ class Pencarian extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        // Ganti dengan marginPageDefault
+      // Ganti dengan marginPageDefault
       child: TextField(
-        style: TextStyle(color: Colors.black),
+        style: AppStyle.biasa,
         decoration: InputDecoration(
           hintText: 'Cari item...',
           hintStyle: TextStyle(color: Colors.grey),
@@ -27,7 +27,8 @@ class Pencarian extends StatelessWidget {
             borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
             borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
-          contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           prefixIcon: Icon(Icons.search, color: Colors.grey.shade500),
         ),
       ),

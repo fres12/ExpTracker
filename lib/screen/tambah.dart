@@ -24,33 +24,32 @@ class TambahScreen extends StatelessWidget {
             ),
           ),
           padding: TPosition.topnavbar,
-        child: Stack(
-          children: [
-            // Teks di tengah
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                'Tambah Item',
-                style: AppStyle.header,
+          child: Stack(
+            children: [
+              // Teks di tengah
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'Tambah Item',
+                  style: AppStyle.header,
+                ),
               ),
-            ),
-            // Ikon di kanan atas
-            Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () {
-                  // Aksi untuk tombol back
-                  Navigator.pop(context);
-                },
+              // Ikon di kiri atas
+              Align(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    // Aksi untuk tombol back
+                    Navigator.pop(context);
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
         ),
       ),
       body: SingleChildScrollView(
-        // Membuat body dapat discroll
         child: Container(
           margin: TPosition.marginPageDefault,
           child: Column(
@@ -58,14 +57,14 @@ class TambahScreen extends StatelessWidget {
             children: [
               // Input Nama Item
               TextField(
+                style: AppStyle.biasa, 
                 decoration: InputDecoration(
-                  labelStyle: TextStyle(color: Colors.grey),
+                  labelStyle: AppStyle.subtitle,
                   filled: true,
                   fillColor: Colors.white,
                   labelText: 'Nama Item',
                   border: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.grey.shade300, width: 0.5),
+                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
                     borderRadius: const BorderRadius.all(Radius.circular(8)),
                   ),
                   focusedBorder: const OutlineInputBorder(
@@ -73,12 +72,10 @@ class TambahScreen extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.grey.shade300, width: 0.5),
+                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
                     borderRadius: const BorderRadius.all(Radius.circular(8)),
                   ),
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   prefixIcon: Icon(Icons.abc, color: Colors.grey.shade500),
                 ),
               ),
@@ -88,14 +85,14 @@ class TambahScreen extends StatelessWidget {
               TextField(
                 controller: _dateController,
                 readOnly: true,
+                style: AppStyle.biasa, 
                 decoration: InputDecoration(
-                  labelStyle: TextStyle(color: Colors.grey),
+                  labelStyle: AppStyle.subtitle,
                   filled: true,
                   fillColor: Colors.white,
                   labelText: 'Tanggal Kadaluwarsa',
                   border: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.grey.shade300, width: 0.5),
+                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
                     borderRadius: const BorderRadius.all(Radius.circular(8)),
                   ),
                   focusedBorder: const OutlineInputBorder(
@@ -103,14 +100,11 @@ class TambahScreen extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.grey.shade300, width: 0.5),
+                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
                     borderRadius: const BorderRadius.all(Radius.circular(8)),
                   ),
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  prefixIcon:
-                      Icon(Icons.date_range, color: Colors.grey.shade500),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  prefixIcon: Icon(Icons.date_range, color: Colors.grey.shade500),
                 ),
                 onTap: () async {
                   DateTime? pickedDate = await showDatePicker(
@@ -129,14 +123,14 @@ class TambahScreen extends StatelessWidget {
 
               // Input Kategori Item
               TextField(
+                style: AppStyle.biasa, 
                 decoration: InputDecoration(
-                  labelStyle: const TextStyle(color: Colors.grey),
+                  labelStyle: AppStyle.subtitle,
                   filled: true,
                   fillColor: Colors.white,
                   labelText: 'Kategori Item',
                   border: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.grey.shade300, width: 0.5),
+                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
                     borderRadius: const BorderRadius.all(Radius.circular(8)),
                   ),
                   focusedBorder: const OutlineInputBorder(
@@ -144,12 +138,10 @@ class TambahScreen extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.grey.shade300, width: 0.5),
+                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
                     borderRadius: const BorderRadius.all(Radius.circular(8)),
                   ),
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   prefixIcon: Icon(Icons.category, color: Colors.grey.shade500),
                 ),
               ),
@@ -157,14 +149,14 @@ class TambahScreen extends StatelessWidget {
 
               // Input Catatan Penyimpanan
               TextField(
+                style: AppStyle.biasa, 
                 decoration: InputDecoration(
-                  labelStyle: const TextStyle(color: Colors.grey),
+                  labelStyle: AppStyle.subtitle,
                   filled: true,
                   fillColor: Colors.white,
                   labelText: 'Catatan Penyimpanan',
                   border: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.grey.shade300, width: 0.5),
+                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
                     borderRadius: const BorderRadius.all(Radius.circular(8)),
                   ),
                   focusedBorder: const OutlineInputBorder(
@@ -172,12 +164,10 @@ class TambahScreen extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.grey.shade300, width: 0.5),
+                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
                     borderRadius: const BorderRadius.all(Radius.circular(8)),
                   ),
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   prefixIcon: Icon(Icons.note, color: Colors.grey.shade500),
                 ),
               ),
@@ -194,8 +184,7 @@ class TambahScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue, // Warna biru
                     foregroundColor: Colors.white, // Warna teks
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 16), // Padding tombol
+                    padding: const EdgeInsets.symmetric(vertical: 16), // Padding tombol
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8), // Sudut membulat
                     ),

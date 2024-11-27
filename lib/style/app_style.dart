@@ -34,6 +34,15 @@ class AppStyle {
     letterSpacing: -0.30, // -2% dari 15
   );
 
+  static TextStyle biasa = TextStyle(
+    color: TColors.black,
+    fontSize: 16,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w400, // semibold
+    letterSpacing: -0.30, // -2% dari 15
+  );
+  
+
   static TextStyle sisarendah = TextStyle(
     color: TColors.sisadikit,
     fontSize: 16,

@@ -21,60 +21,71 @@ class Beranda extends StatelessWidget {
             style: AppStyle.header, // Gunakan style yang sesuai
           ),
         ),
-      ),      
-      body: Padding(
+      ),
+      body: SingleChildScrollView(
+        // Bungkus dengan SingleChildScrollView
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Main Information Box
+            // Main Information Box (Kontainer Responsif)
             Container(
               decoration: BoxDecoration(
-                color: const Color.fromRGBO(50, 122, 201, 1),
+                color: TColors.primary,
                 borderRadius: BorderRadius.circular(12),
               ),
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(12), // Padding dikurangi
               child: Row(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '5 item',
-                        style:
-                            Theme.of(context).textTheme.displayLarge?.copyWith(
-                                  color: Colors.white,
+                  // Kolom dengan teks yang lebih fleksibel
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '5 item',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge
+                              ?.copyWith(color: Colors.white),
+                        ),
+                        const SizedBox(height: 4), // Jarak antar teks dikurangi
+                        Text(
+                          'akan kedaluwarsa dalam 7 hari',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(color: Colors.white),
+                        ),
+                        const SizedBox(height: 8), // Jarak antar teks dikurangi
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                          ),
+                          onPressed: () {},
+                          child: Text(
+                            'Cek item',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: TColors.black,
+                                  fontWeight: FontWeight.w700,
                                 ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'akan kadaluwarsa dalam 7 hari',
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              color: Colors.white,
-                            ),
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
+                          ),
                         ),
-                        onPressed: () {},
-                        child: Text(
-                          'Cek item',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  const Spacer(),
-                  Image.asset(
-                    'assets/calendar.png',
-                    width: MediaQuery.of(context).size.width * 0.19,
-                    fit: BoxFit.contain,
+                  // Kolom gambar yang fleksibel dan responsif
+                  Expanded(
+                    flex: 1,
+                    child: Image.asset(
+                      'assets/calendar.png',
+                      fit: BoxFit.contain, // Menjaga rasio gambar
+                      width: double.infinity, // Lebar fleksibel mengikuti ruang
+                    ),
                   ),
                 ],
               ),
@@ -101,7 +112,7 @@ class Beranda extends StatelessWidget {
             // Blue Box for Items and Button
             Container(
               decoration: BoxDecoration(
-                color: const Color.fromRGBO(255, 255, 255, 1),
+                color: TColors.white,
                 borderRadius: BorderRadius.circular(12),
               ),
               padding: const EdgeInsets.all(16),
@@ -116,19 +127,19 @@ class Beranda extends StatelessWidget {
                         name: 'Susu kotak',
                         category: 'Minuman',
                         expiry: '3 bulan',
-                        color: Color.fromRGBO(218, 191, 9, 1),
+                        color: TColors.sisasedang,
                       ),
                       ItemTile(
                         name: 'Snack biru',
                         category: 'Makanan',
                         expiry: '6 bulan',
-                        color: Colors.green,
+                        color: TColors.sisagood,
                       ),
                       ItemTile(
                         name: 'Sayur kangkung',
                         category: 'Bahan-bahan',
                         expiry: '4 hari',
-                        color: Color.fromRGBO(244, 164, 84, 1),
+                        color: TColors.sisadikit,
                       ),
                     ],
                   ),
@@ -137,7 +148,7 @@ class Beranda extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(232, 243, 255, 1),
+                        backgroundColor: TColors.birumuda,
                         minimumSize: const Size(0, 45),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
@@ -149,7 +160,7 @@ class Beranda extends StatelessWidget {
                       child: const Text(
                         'Lihat Selengkapnya',
                         style: TextStyle(
-                          color: Colors.blue,
+                          color: TColors.primary,
                           fontSize: 16,
                           fontWeight: FontWeight.w800,
                         ),

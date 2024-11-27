@@ -1,4 +1,5 @@
 import 'package:cobacoba/screen/detail.dart';
+import 'package:cobacoba/widget/chip.dart';
 
 import '../style/hover_tile.dart';
 import '../style/settings.dart';
@@ -21,36 +22,45 @@ class ListScreen extends StatelessWidget {
         automaticallyImplyLeading: false, // Hilangkan back button default
         toolbarHeight: 71,
         backgroundColor: Colors.white,
-        elevation: 0,
-        flexibleSpace: Padding(
-          padding: TPosition.topnavbar,
-          child: Stack(
-            children: [
-              // Teks di tengah
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'List Item',
-                  style: AppStyle.header,
-                ),
+        elevation: 0, // Hilangkan shadow default
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              bottom: BorderSide(
+                color: TColors.outline, 
+                width: 0.5, 
               ),
-              // Ikon di kanan atas
-              Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  icon: const Icon(Icons.add),
-                  onPressed: () {
-                    // Aksi untuk tombol tambah
-
-                    // Tambahkan aksi untuk ikon
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TambahScreen()),
-                    );
-                  },
+            ),
+          ),
+          child: Padding(
+            padding: TPosition.topnavbar,
+            child: Stack(
+              children: [
+                // Teks di tengah
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'List Item',
+                    style: AppStyle.header,
+                  ),
                 ),
-              ),
-            ],
+                // Ikon di kanan atas
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: () {
+                      // Aksi untuk tombol tambah
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => TambahScreen()),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -66,9 +76,11 @@ class ListScreen extends StatelessWidget {
                 'Ada 10 item tersimpan',
                 style: AppStyle.header2,
               ),
-              const SizedBox(height: 12), // Jarak sebelum search bar
+              const SizedBox(height: 16), // Jarak sebelum search bar
               Pencarian(),
-              const SizedBox(height: 26), // Jarak antar widget
+              const SizedBox(height: 18),
+              FilterChipExample(),
+              const SizedBox(height: 8), // Jarak antar widget
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
@@ -89,11 +101,11 @@ class ListScreen extends StatelessWidget {
                     return HoverableTile(
                       padding: TPosition.listItem, // Jarak antar item
                       onTap: () {
-
-                         Navigator.push(
+                        Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => DetailItemPage()),
-                    );
+                          MaterialPageRoute(
+                              builder: (context) => DetailItemPage()),
+                        );
                       },
 
                       title: Text(
@@ -112,9 +124,15 @@ class ListScreen extends StatelessWidget {
                         mainAxisSize:
                             MainAxisSize.min, // Mengurangi ruang di kanan
                         children: [
-                          Text(item[index].sisa, 
-                          overflow: TextOverflow.ellipsis,// Sisa hari
-                              style: getStyleForSisa(item[index].sisanya)),
+                          Flexible(
+                            // Tambahkan Flexible di sini
+                            child: Text(
+                              item[index].sisa,
+                              overflow: TextOverflow.ellipsis, // Sisa hari
+                              maxLines: 1, // Pastikan maxLines diatur
+                              style: getStyleForSisa(item[index].sisanya),
+                            ),
+                          ),
                           const SizedBox(
                               width: 10), // Jarak antara sisa hari dan ikon
                           GestureDetector(

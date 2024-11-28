@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import '../style/settings.dart';
 import '../style/app_style.dart';
+import '../screen/detail.dart';
+import '../style/hover_tile.dart';
+import '../data/data_item.dart';
+import '../style/functionstyle.dart';
+import '../widget/navigation_menu.dart';
+import 'package:get/get.dart';
 
 class Beranda extends StatelessWidget {
   const Beranda({Key? key}) : super(key: key);
@@ -10,97 +16,167 @@ class Beranda extends StatelessWidget {
     return Scaffold(
       backgroundColor: TColors.background,
       appBar: AppBar(
+        automaticallyImplyLeading: false, // Hilangkan back button default
         toolbarHeight: 71,
-        backgroundColor: TColors.background,
-        elevation: 0,
-        centerTitle: true,
-        title: Padding(
-          padding: TPosition.topnavbar, // Tambahkan padding di sekitar teks
-          child: Text(
-            'Beranda',
-            style: AppStyle.header, // Gunakan style yang sesuai
+        backgroundColor: Colors.white,
+        elevation: 0, // Hilangkan shadow default
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            color: TColors.background,
+            border: Border(
+              bottom: BorderSide(
+                color: TColors.background,
+                width: 0.5,
+              ),
+            ),
+          ),
+          child: Padding(
+            padding: TPosition.topnavbar,
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Beranda',
+                style: AppStyle.header,
+              ),
+            ),
           ),
         ),
       ),
       body: SingleChildScrollView(
-        // Bungkus dengan SingleChildScrollView
-        padding: const EdgeInsets.all(16.0),
+        padding: TPosition.marginPageDefault2,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Main Information Box (Kontainer Responsif)
+            // Main Information Box
             Container(
+              padding: TPosition.paddingHome,
               decoration: BoxDecoration(
                 color: TColors.primary,
                 borderRadius: BorderRadius.circular(12),
               ),
-              padding: const EdgeInsets.all(12), // Padding dikurangi
               child: Row(
                 children: [
-                  // Kolom dengan teks yang lebih fleksibel
                   Expanded(
-                    flex: 2,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const SizedBox(height: 12),
                         Text(
                           '5 item',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayLarge
-                              ?.copyWith(color: Colors.white),
+                          style: AppStyle.sisa,
                         ),
-                        const SizedBox(height: 4), // Jarak antar teks dikurangi
+                        const SizedBox(height: 2),
                         Text(
                           'akan kedaluwarsa dalam 7 hari',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
-                              ?.copyWith(color: Colors.white),
+                          style: AppStyle.subberanda,
+                          overflow: TextOverflow.ellipsis, //Menambah elipsis\
+                          maxLines: 2,
                         ),
-                        const SizedBox(height: 8), // Jarak antar teks dikurangi
+                        const SizedBox(height: 21),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
+                            padding: TPosition.button,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/detailItem');
+                          },
                           child: Text(
                             'Cek item',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                  color: TColors.black,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                            style: AppStyle.buttonberanda,
+                            overflow: TextOverflow.ellipsis, //Menambah elipsis\
+                            maxLines: 1,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  // Kolom gambar yang fleksibel dan responsif
-                  Expanded(
-                    flex: 1,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    height: MediaQuery.of(context).size.width * 0.3,
                     child: Image.asset(
                       'assets/calendar.png',
-                      fit: BoxFit.contain, // Menjaga rasio gambar
-                      width: double.infinity, // Lebar fleksibel mengikuti ruang
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 16),
-            // Statistics Row
+            const SizedBox(height: 10),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                StatisticBox(title: 'Kedaluwarsa', value: '2 item'),
-                StatisticBox(title: 'Total item', value: '10 tersimpan'),
+                Expanded(
+                  flex: 4,
+                  child: Container(
+                    padding: TPosition.containerkedaluwarsa,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                          color: TColors.outline, width: 0.5), // Outline
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Kedaluwarsa',
+                          style: AppStyle.containersub,
+                        ),
+                        const SizedBox(
+                            height: 20), // Jarak 20px dengan teks berikutnya
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.delete, // Ganti ikon sesuai kebutuhan
+                              color: Colors.blue, // Warna ikon
+                              size: 24, // Ukuran ikon
+                            ),
+                            const SizedBox(
+                                width: 5), // Jarak antara ikon dan teks
+                            Text(
+                              '2 Item',
+                              style: AppStyle.containertitle,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8), // Jarak antar kontainer
+                Expanded(
+                  flex: 6,
+                  child: Container(
+                    padding: TPosition.containerkedaluwarsa,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                          color: TColors.outline, width: 0.5), // Outline
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Total Item',
+                          style: AppStyle.containersub,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          '10 Tersimpan',
+                          style: AppStyle.containertitle2,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
-            const SizedBox(height: 16),
-            // Baru saja ditambahkan
+            const SizedBox(height: 15),
             Text(
               'Baru saja ditambahkan',
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
@@ -108,40 +184,51 @@ class Beranda extends StatelessWidget {
                     fontSize: 18,
                   ),
             ),
-            const SizedBox(height: 8),
-            // Blue Box for Items and Button
+            const SizedBox(height: 15),
+            // Container dengan ListView.builder dan tombol "Lihat Selengkapnya"
             Container(
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: TColors.white,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: TColors.outline, width: 0.5),
               ),
-              padding: const EdgeInsets.all(16),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ListView(
+                  ListView.builder(
+                    padding: TPosition.containerItem,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    children: const [
-                      ItemTile(
-                        name: 'Susu kotak',
-                        category: 'Minuman',
-                        expiry: '3 bulan',
-                        color: TColors.sisasedang,
-                      ),
-                      ItemTile(
-                        name: 'Snack biru',
-                        category: 'Makanan',
-                        expiry: '6 bulan',
-                        color: TColors.sisagood,
-                      ),
-                      ItemTile(
-                        name: 'Sayur kangkung',
-                        category: 'Bahan-bahan',
-                        expiry: '4 hari',
-                        color: TColors.sisadikit,
-                      ),
-                    ],
+                    itemCount: item.length > 7
+                        ? 7
+                        : item.length, // Batasi hingga 8 item
+                    itemBuilder: (context, index) {
+                      return HoverableTile(
+                        padding: TPosition.listItem, // Jarak antar item
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailItemPage()),
+                          );
+                        },
+                        title: Text(
+                          item[index].nama_item,
+                          style: AppStyle.title,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        subtitle: Text(
+                          item[index].kategori,
+                          style: AppStyle.subtitle,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        trailing: Text(
+                          item[index].sisa,
+                          style: getStyleForSisa(item[index].sisanya),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
@@ -153,18 +240,16 @@ class Beranda extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
+                        elevation: 0,
                       ),
                       onPressed: () {
-                        print('Lihat Selengkapnya');
+                        final navigationController =
+                            Get.find<NavigationController>();
+                        navigationController.selectedIndex.value =
+                            1; // Pindah ke ListScreen
                       },
-                      child: const Text(
-                        'Lihat Selengkapnya',
-                        style: TextStyle(
-                          color: TColors.primary,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
+                      child: Text('Lihat Selengkapnya',
+                          style: AppStyle.buttonhome),
                     ),
                   ),
                 ],
@@ -172,87 +257,6 @@ class Beranda extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class StatisticBox extends StatelessWidget {
-  final String title;
-  final String value;
-
-  const StatisticBox({required this.title, required this.value, Key? key})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8),
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color.fromRGBO(255, 255, 255, 1),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: const Color.fromRGBO(144, 165, 180, 1),
-                  ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              value,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ItemTile extends StatelessWidget {
-  final String name;
-  final String category;
-  final String expiry;
-  final Color color;
-
-  const ItemTile({
-    required this.name,
-    required this.category,
-    required this.expiry,
-    required this.color,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(
-        name,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.w600,
-              color: const Color.fromRGBO(60, 60, 60, 1),
-            ),
-      ),
-      subtitle: Text(
-        category,
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: const Color.fromRGBO(171, 164, 164, 1),
-            ),
-      ),
-      trailing: Text(
-        expiry,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: color,
-              fontWeight: FontWeight.bold,
-            ),
       ),
     );
   }

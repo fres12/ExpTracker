@@ -41,7 +41,6 @@ class AppStyle {
     fontWeight: FontWeight.w400, // semibold
     letterSpacing: -0.30, // -2% dari 15
   );
-  
 
   static TextStyle sisarendah = TextStyle(
     color: TColors.sisadikit,
@@ -73,5 +72,56 @@ class AppStyle {
     fontFamily: 'Inter',
     fontWeight: FontWeight.w700, // semibold
     letterSpacing: -0.32, // -2% dari 16
+  );
+
+  static TextStyle sisa = TextStyle(
+    color: Colors.white,
+    fontSize: 24,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w700, // semibold
+    letterSpacing: 1, // -2% dari 16
+  );
+
+  static TextStyle subberanda = TextStyle(
+    color: Colors.white,
+    fontSize: 14,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w500, // semibold
+    letterSpacing: -0.24, // -2% dari 12
+  );
+
+  static TextStyle buttonberanda = TextStyle(
+    color: TColors.black,
+    fontSize: 12,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w800, // semibold
+  );
+
+  static TextStyle containersub = TextStyle(
+    color: TColors.subc,
+    fontSize: 12,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w600, // semibold
+  );
+
+  static TextStyle containertitle = TextStyle(
+    color: TColors.black,
+    fontSize: 16,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w600, // semibold
+  );
+
+  static TextStyle containertitle2 = TextStyle(
+    color: TColors.primary,
+    fontSize: 18,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w600, // semibold
+  );
+
+   static TextStyle buttonhome = TextStyle(
+    color: TColors.primary,
+    fontSize: 14,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w600, // semibold
   );
 }

@@ -19,10 +19,10 @@ class DetailItemPage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.edit),
             onPressed: () {
-               Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => EditScreen()),
-                    );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EditScreen()),
+              );
             },
           ),
         ],

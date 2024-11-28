@@ -1,5 +1,5 @@
-import 'package:cobacoba/screen/detail.dart';
-import 'package:cobacoba/widget/chip.dart';
+import '../screen/detail.dart';
+import '../widget/chip.dart';
 
 import '../style/hover_tile.dart';
 import '../style/settings.dart';

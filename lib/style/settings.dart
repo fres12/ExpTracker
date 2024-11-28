@@ -17,6 +17,7 @@ class TColors {
   static const Color sisasedang = Color(0xFFDBBF09);
   static const Color sisagood = Color(0xFF61BA75);
   static const Color exp = Color(0xFFF45454);
+  static const Color subc = Color(0xFF90A5B4);
 }
 
 class TPosition {
@@ -35,9 +36,20 @@ class TPosition {
     bottom: 28,
   );
 
+  static const EdgeInsets marginPageDefault2 = EdgeInsets.only(
+    left: 28,
+    right: 28,
+    bottom: 28,
+  );
+
   static const EdgeInsets topnavbar = EdgeInsets.only(
     left: 13,
     right: 13,
+  );
+
+  static const EdgeInsets button = EdgeInsets.only(
+    left: 40,
+    right: 40,
   );
 
   static const EdgeInsets containerItem = EdgeInsets.only(
@@ -46,4 +58,13 @@ class TPosition {
   );
   static const EdgeInsets listItem =
       EdgeInsets.only(bottom: 6, left: 20, right: 20, top: 6);
+
+  static const EdgeInsets paddingHome =
+      EdgeInsets.only(left: 14, right: 7, top: 10, bottom: 17);
+
+  static const EdgeInsets containerkedaluwarsa = EdgeInsets.only(
+    top: 10,
+    left: 10,
+    bottom: 13,
+  );
 }

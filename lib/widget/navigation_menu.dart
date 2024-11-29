@@ -64,7 +64,7 @@ class NavigationMenu extends StatelessWidget {
               destinations: const [
                 NavigationDestination(icon: Icon(Iconsax.home_2), label: 'Home'),
                 NavigationDestination(icon: Icon(Iconsax.menu_1), label: 'List'),
-                NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
+                NavigationDestination(icon: Icon(Icons.info), label: 'Info'),
               ],
             ),
           ),
@@ -82,6 +82,6 @@ class NavigationController extends GetxController {
   final screens = [
     const Beranda(),
     const ListScreen(),
-    const Profil(),
+    const Info(),
   ];
 }

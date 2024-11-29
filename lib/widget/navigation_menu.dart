@@ -1,4 +1,4 @@
-import '../screen/profil.dart';
+import '../screen/info.dart';
 import '../screen/Beranda.dart';
 import '../screen/list.dart';
 import '../style/settings.dart';

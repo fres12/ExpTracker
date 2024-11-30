@@ -18,6 +18,10 @@ class TColors {
   static const Color sisagood = Color(0xFF61BA75);
   static const Color exp = Color(0xFFF45454);
   static const Color subc = Color(0xFF90A5B4);
+
+  static const Color backicon = Color(0xFFE6FAFF);
+  static const Color icon = Color(0xFF3FC2E3);
+  static const Color remove = Color(0xFFFFE5E5);
 }
 
 class TPosition {
@@ -41,6 +45,9 @@ class TPosition {
     right: 28,
     bottom: 28,
   );
+
+  static const EdgeInsets marginPageDetail =
+      EdgeInsets.only(left: 20, right: 20, bottom: 28, top: 16);
 
   static const EdgeInsets topnavbar = EdgeInsets.only(
     left: 13,

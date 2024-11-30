@@ -123,23 +123,25 @@ class Beranda extends StatelessWidget {
                         ),
                         const SizedBox(
                             height: 20), // Jarak 20px dengan teks berikutnya
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.delete, // Ganti ikon sesuai kebutuhan
-                              color: Colors.blue, // Warna ikon
-                              size: 24, // Ukuran ikon
-                            ),
-                            const SizedBox(
-                                width: 5), // Jarak antara ikon dan teks
-                            Text(
-                              '2 Item',
-                              style: AppStyle.containertitle,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
+                       Row(
+  children: [
+    Icon(
+      Icons.delete, // Ikon
+      color: Colors.blue, // Warna ikon
+      size: 24, // Ukuran ikon
+    ),
+    const SizedBox(width: 5), // Jarak antara ikon dan teks
+    Flexible(
+      child: Text(
+        '2 Item',
+        style: AppStyle.containertitle,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis, // Aktifkan elipsis
+      ),
+    ),
+  ],
+),
+
                       ],
                     ),
                   ),

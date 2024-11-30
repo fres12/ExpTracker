@@ -1,11 +1,43 @@
+import 'package:cobacoba/screen/detail.dart';
+
 import '../style/settings.dart';
 import 'package:flutter/material.dart';
 import '../style/app_style.dart';
 
-class EditScreen extends StatelessWidget {
-  EditScreen({super.key});
+class EditScreen extends StatefulWidget {
+  @override
+  _EditScreenState createState() => _EditScreenState();
+}
 
+class _EditScreenState extends State<EditScreen> {
+  final TextEditingController _namaItemController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _kategoriItemController = TextEditingController();
+  bool _isButtonEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _namaItemController.addListener(_validateFields);
+    _dateController.addListener(_validateFields);
+    _kategoriItemController.addListener(_validateFields);
+  }
+
+  void _validateFields() {
+    setState(() {
+      _isButtonEnabled = _namaItemController.text.isNotEmpty &&
+          _dateController.text.isNotEmpty &&
+          _kategoriItemController.text.isNotEmpty;
+    });
+  }
+
+  @override
+  void dispose() {
+    _namaItemController.dispose();
+    _dateController.dispose();
+    _kategoriItemController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,25 +89,27 @@ class EditScreen extends StatelessWidget {
             children: [
               // Input Nama Item
               TextField(
-                style: AppStyle.biasa, 
+                controller: _namaItemController,
+                style: AppStyle.biasa,
                 decoration: InputDecoration(
                   labelStyle: AppStyle.subtitle,
                   filled: true,
                   fillColor: Colors.white,
                   labelText: 'Nama Item',
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(color: TColors.outline, width: 0.5),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue, width: 1.5),
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: TColors.outline, width: 0.5),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   prefixIcon: Icon(Icons.abc, color: Colors.grey.shade500),
                 ),
               ),
@@ -85,26 +119,28 @@ class EditScreen extends StatelessWidget {
               TextField(
                 controller: _dateController,
                 readOnly: true,
-                style: AppStyle.biasa, 
+                style: AppStyle.biasa,
                 decoration: InputDecoration(
                   labelStyle: AppStyle.subtitle,
                   filled: true,
                   fillColor: Colors.white,
-                  labelText: 'Tanggal Kadaluwarsa',
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  labelText: 'Tanggal Kedaluwarsa',
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(color: TColors.outline, width: 0.5),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue, width: 1.5),
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: TColors.outline, width: 0.5),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  prefixIcon: Icon(Icons.date_range, color: Colors.grey.shade500),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  prefixIcon:
+                      Icon(Icons.date_range, color: Colors.grey.shade500),
                 ),
                 onTap: () async {
                   DateTime? pickedDate = await showDatePicker(
@@ -123,25 +159,27 @@ class EditScreen extends StatelessWidget {
 
               // Input Kategori Item
               TextField(
-                style: AppStyle.biasa, 
+                controller: _kategoriItemController,
+                style: AppStyle.biasa,
                 decoration: InputDecoration(
                   labelStyle: AppStyle.subtitle,
                   filled: true,
                   fillColor: Colors.white,
                   labelText: 'Kategori Item',
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(color: TColors.outline, width: 0.5),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue, width: 1.5),
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: TColors.outline, width: 0.5),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   prefixIcon: Icon(Icons.category, color: Colors.grey.shade500),
                 ),
               ),
@@ -149,25 +187,26 @@ class EditScreen extends StatelessWidget {
 
               // Input Catatan Penyimpanan
               TextField(
-                style: AppStyle.biasa, 
+                style: AppStyle.biasa,
                 decoration: InputDecoration(
                   labelStyle: AppStyle.subtitle,
                   filled: true,
                   fillColor: Colors.white,
                   labelText: 'Catatan Penyimpanan',
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(color: TColors.outline, width: 0.5),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue, width: 1.5),
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade300, width: 0.5),
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: TColors.outline, width: 0.5),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   prefixIcon: Icon(Icons.note, color: Colors.grey.shade500),
                 ),
               ),
@@ -177,17 +216,20 @@ class EditScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    // Aksi tombol
-                    print('Tanggal yang dipilih: ${_dateController.text}');
-                  },
+                  onPressed: _isButtonEnabled
+                      ? () {
+                          //KODE ubah di sini nanti
+                          Navigator.pop(context);
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Berhasil disimpan."),
+                          ));
+                        }
+                      : null,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue, // Warna biru
-                    foregroundColor: Colors.white, // Warna teks
-                    padding: const EdgeInsets.symmetric(vertical: 16), // Padding tombol
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8), // Sudut membulat
-                    ),
+                    backgroundColor: TColors.primary,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
                   child: const Text('Simpan'),
                 ),

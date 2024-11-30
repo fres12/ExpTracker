@@ -44,7 +44,7 @@ class Info extends StatelessWidget {
       body: SingleChildScrollView(
         // Membuat body dapat discroll
         child: Container(
-          margin: TPosition.marginPageDefault,
+          margin: TPosition.marginPageDetail,
           child: ListView(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

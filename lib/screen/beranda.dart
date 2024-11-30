@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../style/settings.dart';
 import '../style/app_style.dart';
-import '../screen/detail.dart';
 import '../style/hover_tile.dart';
 import '../data/data_item.dart';
 import '../style/functionstyle.dart';
@@ -79,12 +78,12 @@ class Beranda extends StatelessWidget {
                             padding: TPosition.button,
                           ),
                           onPressed: () {
-                            Navigator.pushNamed(context, '/detailItem');
+                            //nothing
                           },
                           child: Text(
                             'Cek item',
                             style: AppStyle.buttonberanda,
-                            overflow: TextOverflow.ellipsis, //Menambah elipsis\
+                            overflow: TextOverflow.ellipsis, //Menambah elipsis
                             maxLines: 1,
                           ),
                         ),
@@ -206,11 +205,7 @@ class Beranda extends StatelessWidget {
                       return HoverableTile(
                         padding: TPosition.listItem, // Jarak antar item
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DetailItemPage()),
-                          );
+                          Navigator.pushNamed(context, '/detailItem');
                         },
                         title: Text(
                           item[index].nama_item,

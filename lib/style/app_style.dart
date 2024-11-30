@@ -118,10 +118,33 @@ class AppStyle {
     fontWeight: FontWeight.w600, // semibold
   );
 
-   static TextStyle buttonhome = TextStyle(
+  static TextStyle buttonhome = TextStyle(
     color: TColors.primary,
     fontSize: 14,
     fontFamily: 'Inter',
     fontWeight: FontWeight.w600, // semibold
+  );
+
+  static TextStyle detailTitle = TextStyle(
+    color: TColors.black,
+    fontSize: 22,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle detailsub = TextStyle(
+    color: TColors.black,
+    fontSize: 15,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w500,
+    letterSpacing: -0.26,
+  );
+
+  static TextStyle detailisi = TextStyle(
+    color: TColors.black,
+    fontSize: 15,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.26,
   );
 }

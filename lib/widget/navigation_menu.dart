@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:get/get.dart';
 
+
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
 

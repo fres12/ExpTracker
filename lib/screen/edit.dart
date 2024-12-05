@@ -149,7 +149,7 @@ class _EditScreenState extends State<EditScreen> {
                   );
                   if (pickedDate != null) {
                     _dateController.text =
-                        pickedDate.toLocal().toString().split(' ')[0];
+                        pickedDate!.toLocal().toString().split(' ')[0];
                   }
                 },
               ),

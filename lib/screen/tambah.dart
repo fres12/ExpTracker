@@ -11,6 +11,7 @@ class _TambahScreenState extends State<TambahScreen> {
   final TextEditingController _namaItemController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _kategoriItemController = TextEditingController();
+  final TextEditingController _catatanController = TextEditingController();
   bool _isButtonEnabled = false;
 
   @override
@@ -185,6 +186,7 @@ class _TambahScreenState extends State<TambahScreen> {
 
               // Input Catatan Penyimpanan
               TextField(
+                controller: _catatanController,
                 style: AppStyle.biasa,
                 decoration: InputDecoration(
                   labelStyle: AppStyle.subtitle,

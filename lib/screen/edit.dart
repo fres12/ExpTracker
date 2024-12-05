@@ -11,6 +11,7 @@ class _EditScreenState extends State<EditScreen> {
   final TextEditingController _namaItemController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _kategoriItemController = TextEditingController();
+  final TextEditingController _catatanController = TextEditingController();
   bool _isButtonEnabled = false;
 
   @override
@@ -185,6 +186,7 @@ class _EditScreenState extends State<EditScreen> {
 
               // Input Catatan Penyimpanan
               TextField(
+                controller: _catatanController,
                 style: AppStyle.biasa,
                 decoration: InputDecoration(
                   labelStyle: AppStyle.subtitle,

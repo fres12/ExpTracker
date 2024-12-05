@@ -1,7 +1,6 @@
 import '../style/settings.dart';
 import 'package:flutter/material.dart';
 import '../style/app_style.dart';
-import 'list.dart';
 
 class TambahScreen extends StatefulWidget {
   @override

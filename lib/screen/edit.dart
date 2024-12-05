@@ -1,5 +1,3 @@
-import 'package:cobacoba/screen/detail.dart';
-
 import '../style/settings.dart';
 import 'package:flutter/material.dart';
 import '../style/app_style.dart';

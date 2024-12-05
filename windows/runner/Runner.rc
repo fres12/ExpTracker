@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "budgetku" "\0"
+            VALUE "FileDescription", "exptracker" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "budgetku" "\0"
+            VALUE "InternalName", "exptracker" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "budgetku.exe" "\0"
-            VALUE "ProductName", "budgetku" "\0"
+            VALUE "OriginalFilename", "exptracker.exe" "\0"
+            VALUE "ProductName", "exptracker" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

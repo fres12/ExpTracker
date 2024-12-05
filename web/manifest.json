@@ -1,6 +1,6 @@
 {
-    "name": "budgetku",
-    "short_name": "budgetku",
+    "name": "exptracker",
+    "short_name": "exptracker",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

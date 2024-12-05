@@ -1,4 +1,4 @@
-import 'package:cobacoba/screen/edit.dart';
+import 'package:exptracker/screen/edit.dart';
 
 import '../screen/tambah.dart';
 import 'package:flutter/material.dart';

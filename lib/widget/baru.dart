@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import '../style/app_style.dart';
-import '../style/settings.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-      ), 
+      ),
     );
   }
 }

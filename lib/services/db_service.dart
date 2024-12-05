@@ -1,5 +1,5 @@
-import '../db_helper/repository.dart';
-import '../models/item.dart';
+import '../data/db_repo.dart';
+import '../models/db_item.dart';
 
 class ItemService {
   late Repository _repository;

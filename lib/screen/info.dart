@@ -108,7 +108,7 @@ class Info extends StatelessWidget {
   Widget isiKonten1() {
     return RichText(
       text: TextSpan(
-        style: AppStyle.detailsub,
+        style: AppStyle.detailsubtipis,
         children: const [
           TextSpan(
             text:
@@ -147,7 +147,7 @@ class Info extends StatelessWidget {
   Widget isiKonten2() {
     return RichText(
       text: TextSpan(
-        style: AppStyle.detailsub,
+        style: AppStyle.detailsubtipis,
         children: const [
           TextSpan(
             text:
@@ -189,7 +189,7 @@ class Info extends StatelessWidget {
   Widget isiKonten3() {
     return RichText(
       text: TextSpan(
-        style: AppStyle.detailsub,
+        style: AppStyle.detailsubtipis,
         children: const [
           TextSpan(
             text: 'Makanan dan Minuman\n',
@@ -230,7 +230,7 @@ class Info extends StatelessWidget {
   Widget isiKonten4() {
     return RichText(
       text: TextSpan(
-        style: AppStyle.detailsub,
+        style: AppStyle.detailsubtipis,
         children: const [
           TextSpan(
             text: 'Makanan dan Minuman\n',
@@ -268,7 +268,7 @@ class Info extends StatelessWidget {
   Widget isiKonten5() {
     return RichText(
       text: TextSpan(
-        style: AppStyle.detailsub,
+        style: AppStyle.detailsubtipis,
         children: const [
           TextSpan(
             text:

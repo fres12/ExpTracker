@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:get/get.dart';
 
-
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
 
@@ -34,7 +33,8 @@ class NavigationMenu extends StatelessWidget {
                     fontFamily: 'Inter',
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
-                    color: TColors.primary, // Warna biru untuk teks yang dipilih
+                    color:
+                        TColors.primary, // Warna biru untuk teks yang dipilih
                   );
                 }
                 return const TextStyle(
@@ -47,7 +47,8 @@ class NavigationMenu extends StatelessWidget {
               iconTheme: WidgetStateProperty.resolveWith((states) {
                 if (states.contains(WidgetState.selected)) {
                   return const IconThemeData(
-                    color: TColors.primary, // Warna biru untuk ikon yang dipilih
+                    color:
+                        TColors.primary, // Warna biru untuk ikon yang dipilih
                   );
                 }
                 return const IconThemeData(
@@ -63,8 +64,10 @@ class NavigationMenu extends StatelessWidget {
                 controller.selectedIndex.value = index;
               },
               destinations: const [
-                NavigationDestination(icon: Icon(Iconsax.home_2), label: 'Home'),
-                NavigationDestination(icon: Icon(Iconsax.menu_1), label: 'List'),
+                NavigationDestination(
+                    icon: Icon(Iconsax.home_2), label: 'Home'),
+                NavigationDestination(
+                    icon: Icon(Iconsax.menu_1), label: 'List'),
                 NavigationDestination(icon: Icon(Icons.info), label: 'Info'),
               ],
             ),

@@ -17,6 +17,21 @@ class ItemService {
     return await _repository.readData('items');
   }
 
+  //Read Detail
+  Future<Map<String, dynamic>> readItemById(int id) async {
+    var connection = await _repository.database;
+    var result = await connection?.query(
+      'items',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+    if (result != null && result.isNotEmpty) {
+      return result.first; // Mengembalikan hasil pertama
+    } else {
+      throw Exception('Item dengan ID $id tidak ditemukan');
+    }
+  }
+
   //Edit Item
   updateItem(Item item) async {
     return await _repository.updateData('items', item.itemMap());

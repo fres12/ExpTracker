@@ -1,10 +1,15 @@
 import '../style/settings.dart';
 import 'package:flutter/material.dart';
 import '../style/app_style.dart';
+import '../models/db_item.dart';
+import '../services/db_service.dart';
+import 'package:intl/intl.dart';
 
 class TambahScreen extends StatefulWidget {
+  const TambahScreen({super.key});
+
   @override
-  _TambahScreenState createState() => _TambahScreenState();
+  State<TambahScreen> createState() => _TambahScreenState();
 }
 
 class _TambahScreenState extends State<TambahScreen> {
@@ -13,6 +18,8 @@ class _TambahScreenState extends State<TambahScreen> {
   final TextEditingController _kategoriItemController = TextEditingController();
   final TextEditingController _catatanController = TextEditingController();
   bool _isButtonEnabled = false;
+
+  final _itemService = ItemService();
 
   @override
   void initState() {
@@ -217,13 +224,27 @@ class _TambahScreenState extends State<TambahScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: _isButtonEnabled
-                      ? () {
-                          //KODE tambah di sini nanti
-                          Navigator.pop(context);
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text("Berhasil ditambahkan."),
-                          ));
+                      ? () async {
+                          //KODE tambah di sini
+                          var item = Item();
+
+                          DateTime now = DateTime.now();
+                          String formattedDate =
+                              DateFormat('yyyy-MM-dd').format(now);
+
+                          item.added = formattedDate;
+                          item.nama = _namaItemController.text;
+                          item.expired = _dateController.text;
+                          item.kategori = _kategoriItemController.text;
+                          item.catatan = _catatanController.text;
+                          var result = await _itemService.saveItem(item);
+                          if (context.mounted) {
+                            Navigator.pop(context, result);
+                            //    ScaffoldMessenger.of(context)
+                            //        .showSnackBar(const SnackBar(
+                            //      content: Text("Berhasil ditambahkan."),
+                            //    ));
+                          }
                         }
                       : null,
                   style: ElevatedButton.styleFrom(

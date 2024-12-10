@@ -1,54 +1,64 @@
 import '../style/settings.dart';
 import 'package:flutter/material.dart';
 
-enum ExpirationFilter { Exp, Week, WTo3M, MoreThan3 }
+enum ExpirationFilter { siExp, siWeek, siWTo3M, siMoreThan3 }
 
 class FilterChipExample extends StatefulWidget {
-  const FilterChipExample({super.key});
+  final Function(Set<ExpirationFilter>) onFilterChanged;
+  //final GlobalKey<FilterChipExampleState> key;
+
+  //const FilterChipExample({required this.onFilterChanged, required this.key});
+  const FilterChipExample({super.key, required this.onFilterChanged});
 
   @override
-  State<FilterChipExample> createState() => _FilterChipExampleState();
+  State<FilterChipExample> createState() => FilterChipExampleState();
 }
 
-class _FilterChipExampleState extends State<FilterChipExample> {
-  Set<ExpirationFilter> filters = <ExpirationFilter>{};
+class FilterChipExampleState extends State<FilterChipExample> {
+  ExpirationFilter? selectedFilter;
 
-  // Warna berdasarkan kategori chip
   Color getChipColor(ExpirationFilter filter) {
     switch (filter) {
-      case ExpirationFilter.Exp:
-        return TColors.exp; // Warna untuk Expire
-      case ExpirationFilter.Week:
-        return TColors.sisadikit; // Warna untuk 7 Hari
-      case ExpirationFilter.WTo3M:
-        return TColors.sisasedang; // Warna untuk 1 Minggu - 3 Bulan
-      case ExpirationFilter.MoreThan3:
-        return TColors.sisagood; // Warna untuk > 3 Bulan
+      case ExpirationFilter.siExp:
+        return TColors.exp;
+      case ExpirationFilter.siWeek:
+        return TColors.sisadikit;
+      case ExpirationFilter.siWTo3M:
+        return TColors.sisasedang;
+      case ExpirationFilter.siMoreThan3:
+        return TColors.sisagood;
     }
+  }
+
+  // Tambahkan metode untuk menghapus filter
+  void clearFilters() {
+    setState(() {
+      selectedFilter = null;
+      widget.onFilterChanged(<ExpirationFilter>{});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.topLeft, // Memulai dari kiri atas
+      alignment: Alignment.topLeft,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start, // Kolom rata kiri
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          // Membungkus Wrap dengan SingleChildScrollView untuk menggulirkan secara horizontal
           SingleChildScrollView(
-            scrollDirection: Axis.horizontal, // Mengaktifkan scroll horizontal
+            scrollDirection: Axis.horizontal,
             child: Wrap(
-              spacing: 8.0, // Jarak antar chip horizontal
-              runSpacing: 8.0, // Jarak antar chip vertikal
+              spacing: 8.0,
+              runSpacing: 8.0,
               children:
                   ExpirationFilter.values.map((ExpirationFilter expFilter) {
                 return FilterChip(
                   label: Text(
                     _getFilterLabel(expFilter),
                     style: TextStyle(
-                      color: filters.contains(expFilter)
-                          ? Colors.white // Teks putih saat dipilih
-                          : getChipColor(expFilter), // Warna teks default
+                      color: selectedFilter == expFilter
+                          ? Colors.white
+                          : getChipColor(expFilter),
                       fontSize: 15.0,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w600,
@@ -56,23 +66,33 @@ class _FilterChipExampleState extends State<FilterChipExample> {
                   ),
                   shape: StadiumBorder(
                     side: BorderSide(
-                      color: getChipColor(expFilter), // Warna garis
-                      width: 1.5, // Ketebalan garis
+                      color: getChipColor(expFilter),
+                      width: 1.5,
                     ),
                   ),
                   backgroundColor: Colors.white,
-                  selectedColor: getChipColor(expFilter), // Warna saat dipilih
-                  selected: filters.contains(expFilter),
-                  checkmarkColor: Colors.white, // Warna checklist putih
-                  onSelected: (bool selected) {
-                    setState(() {
-                      if (selected) {
-                        filters.add(expFilter);
-                      } else {
-                        filters.remove(expFilter);
-                      }
-                    });
-                  },
+                  selectedColor: getChipColor(expFilter),
+                  selected: selectedFilter == expFilter,
+                  checkmarkColor: Colors.white,
+                  onSelected:
+                      selectedFilter == null || selectedFilter == expFilter
+                          ? (bool selected) {
+                              FocusScope.of(context).unfocus();
+
+                              setState(() {
+                                if (selected) {
+                                  clearFilters();
+                                  selectedFilter = expFilter;
+                                } else {
+                                  selectedFilter = null;
+                                  clearFilters();
+                                }
+                                widget.onFilterChanged(selectedFilter != null
+                                    ? {selectedFilter!}
+                                    : <ExpirationFilter>{});
+                              });
+                            }
+                          : null,
                 );
               }).toList(),
             ),
@@ -83,17 +103,16 @@ class _FilterChipExampleState extends State<FilterChipExample> {
     );
   }
 
-  // Label untuk setiap filter
   String _getFilterLabel(ExpirationFilter filter) {
     switch (filter) {
-      case ExpirationFilter.Exp:
-        return 'Expire';
-      case ExpirationFilter.Week:
-        return '7 Hari';
-      case ExpirationFilter.WTo3M:
-        return '1 Minggu - 3 Bulan';
-      case ExpirationFilter.MoreThan3:
-        return '> 3 Bulan';
+      case ExpirationFilter.siExp:
+        return 'Expired';
+      case ExpirationFilter.siWeek:
+        return '7 hari';
+      case ExpirationFilter.siWTo3M:
+        return '8-90 hari';
+      case ExpirationFilter.siMoreThan3:
+        return '> 90 hari';
     }
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'settings.dart';
 
 class AppStyle {
-  static TextStyle header = TextStyle(
+  static TextStyle header = const TextStyle(
     color: TColors.black,
     fontSize: 19,
     fontFamily: 'Inter',
@@ -10,7 +10,7 @@ class AppStyle {
     letterSpacing: -0.38, // -2% dari 19
   );
 
-  static TextStyle header2 = TextStyle(
+  static TextStyle header2 = const TextStyle(
     color: TColors.black,
     fontSize: 18,
     fontFamily: 'Inter',
@@ -18,7 +18,7 @@ class AppStyle {
     letterSpacing: -0.36, // -2% dari 18
   );
 
-  static TextStyle title = TextStyle(
+  static TextStyle title = const TextStyle(
     color: TColors.black,
     fontSize: 16,
     fontFamily: 'Inter',
@@ -26,7 +26,7 @@ class AppStyle {
     letterSpacing: -0.32, // -2% dari 16
   );
 
-  static TextStyle subtitle = TextStyle(
+  static TextStyle subtitle = const TextStyle(
     color: TColors.subtitle,
     fontSize: 15,
     fontFamily: 'Inter',
@@ -34,7 +34,7 @@ class AppStyle {
     letterSpacing: -0.30, // -2% dari 15
   );
 
-  static TextStyle biasa = TextStyle(
+  static TextStyle biasa = const TextStyle(
     color: TColors.black,
     fontSize: 16,
     fontFamily: 'Inter',
@@ -42,7 +42,7 @@ class AppStyle {
     letterSpacing: -0.30, // -2% dari 15
   );
 
-  static TextStyle sisarendah = TextStyle(
+  static TextStyle sisarendah = const TextStyle(
     color: TColors.sisadikit,
     fontSize: 16,
     fontFamily: 'Inter',
@@ -50,7 +50,7 @@ class AppStyle {
     letterSpacing: -0.32, // -2% dari 16
   );
 
-  static TextStyle sisasedang = TextStyle(
+  static TextStyle sisasedang = const TextStyle(
     color: TColors.sisasedang,
     fontSize: 16,
     fontFamily: 'Inter',
@@ -58,7 +58,7 @@ class AppStyle {
     letterSpacing: -0.32, // -2% dari 16
   );
 
-  static TextStyle sisabagus = TextStyle(
+  static TextStyle sisabagus = const TextStyle(
     color: TColors.sisagood,
     fontSize: 16,
     fontFamily: 'Inter',
@@ -66,7 +66,7 @@ class AppStyle {
     letterSpacing: -0.32, // -2% dari 16
   );
 
-  static TextStyle sisaexp = TextStyle(
+  static TextStyle sisaexp = const TextStyle(
     color: TColors.exp,
     fontSize: 16,
     fontFamily: 'Inter',
@@ -74,7 +74,7 @@ class AppStyle {
     letterSpacing: -0.32, // -2% dari 16
   );
 
-  static TextStyle sisa = TextStyle(
+  static TextStyle sisa = const TextStyle(
     color: Colors.white,
     fontSize: 24,
     fontFamily: 'Inter',
@@ -82,7 +82,7 @@ class AppStyle {
     letterSpacing: 1, // -2% dari 16
   );
 
-  static TextStyle subberanda = TextStyle(
+  static TextStyle subberanda = const TextStyle(
     color: Colors.white,
     fontSize: 14,
     fontFamily: 'Inter',
@@ -90,49 +90,49 @@ class AppStyle {
     letterSpacing: -0.24, // -2% dari 12
   );
 
-  static TextStyle buttonberanda = TextStyle(
+  static TextStyle buttonberanda = const TextStyle(
     color: TColors.black,
     fontSize: 12,
     fontFamily: 'Inter',
     fontWeight: FontWeight.w800, // semibold
   );
 
-  static TextStyle containersub = TextStyle(
+  static TextStyle containersub = const TextStyle(
     color: TColors.subc,
     fontSize: 12,
     fontFamily: 'Inter',
     fontWeight: FontWeight.w600, // semibold
   );
 
-  static TextStyle containertitle = TextStyle(
+  static TextStyle containertitle = const TextStyle(
     color: TColors.black,
     fontSize: 16,
     fontFamily: 'Inter',
     fontWeight: FontWeight.w600, // semibold
   );
 
-  static TextStyle containertitle2 = TextStyle(
+  static TextStyle containertitle2 = const TextStyle(
     color: TColors.primary,
     fontSize: 18,
     fontFamily: 'Inter',
     fontWeight: FontWeight.w600, // semibold
   );
 
-  static TextStyle buttonhome = TextStyle(
+  static TextStyle buttonhome = const TextStyle(
     color: TColors.primary,
     fontSize: 14,
     fontFamily: 'Inter',
     fontWeight: FontWeight.w600, // semibold
   );
 
-  static TextStyle detailTitle = TextStyle(
+  static TextStyle detailTitle = const TextStyle(
     color: TColors.black,
     fontSize: 22,
     fontFamily: 'Inter',
     fontWeight: FontWeight.bold,
   );
 
-  static TextStyle detailsub = TextStyle(
+  static TextStyle detailsub = const TextStyle(
     color: TColors.black,
     fontSize: 15,
     fontFamily: 'Inter',
@@ -140,7 +140,15 @@ class AppStyle {
     letterSpacing: -0.26,
   );
 
-  static TextStyle detailisi = TextStyle(
+  static TextStyle detailsubtipis = const TextStyle(
+    color: TColors.black,
+    fontSize: 15,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w300,
+    letterSpacing: -0.26,
+  );
+
+  static TextStyle detailisi = const TextStyle(
     color: TColors.black,
     fontSize: 15,
     fontFamily: 'Inter',

@@ -1,10 +1,15 @@
+import 'package:exptracker/models/db_item.dart';
 import '../style/settings.dart';
 import 'package:flutter/material.dart';
 import '../style/app_style.dart';
+import '../services/db_service.dart';
 
 class EditScreen extends StatefulWidget {
+  final Item item;
+  const EditScreen({super.key, required this.item});
+
   @override
-  _EditScreenState createState() => _EditScreenState();
+  State<EditScreen> createState() => _EditScreenState();
 }
 
 class _EditScreenState extends State<EditScreen> {
@@ -14,19 +19,31 @@ class _EditScreenState extends State<EditScreen> {
   final TextEditingController _catatanController = TextEditingController();
   bool _isButtonEnabled = false;
 
+  final _itemService = ItemService();
+
   @override
   void initState() {
     super.initState();
+    _namaItemController.text = widget.item.nama;
+    _dateController.text = widget.item.expired;
+    _kategoriItemController.text = widget.item.kategori;
+    _catatanController.text = widget.item.catatan ?? '';
+
     _namaItemController.addListener(_validateFields);
     _dateController.addListener(_validateFields);
     _kategoriItemController.addListener(_validateFields);
+    _catatanController.addListener(_validateFields);
   }
 
   void _validateFields() {
     setState(() {
       _isButtonEnabled = _namaItemController.text.isNotEmpty &&
           _dateController.text.isNotEmpty &&
-          _kategoriItemController.text.isNotEmpty;
+          _kategoriItemController.text.isNotEmpty &&
+          (_catatanController.text != widget.item.catatan ||
+              _namaItemController.text != widget.item.nama ||
+              _dateController.text != widget.item.expired ||
+              _kategoriItemController.text != widget.item.kategori);
     });
   }
 
@@ -217,13 +234,21 @@ class _EditScreenState extends State<EditScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: _isButtonEnabled
-                      ? () {
-                          //KODE ubah di sini nanti
-                          Navigator.pop(context);
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text("Berhasil disimpan."),
-                          ));
+                      ? () async {
+                          var item = Item();
+                          item.id = widget.item.id;
+                          item.added = widget.item.added;
+                          item.nama = _namaItemController.text;
+                          item.expired = _dateController.text;
+                          item.kategori = _kategoriItemController.text;
+                          item.catatan = _catatanController.text;
+                          var result = await _itemService.updateItem(item);
+                          if (result != null) {
+                            if (context.mounted) {
+                              Navigator.pop(context,
+                                  item); // Mengembalikan item yang diperbarui
+                            }
+                          }
                         }
                       : null,
                   style: ElevatedButton.styleFrom(

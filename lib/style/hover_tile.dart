@@ -13,11 +13,11 @@ class HoverableTile extends StatefulWidget {
     required this.title,
     required this.subtitle,
     required this.trailing,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
-  _HoverableTileState createState() => _HoverableTileState();
+  State<HoverableTile> createState() => _HoverableTileState();
 }
 
 class _HoverableTileState extends State<HoverableTile> {
@@ -43,16 +43,13 @@ class _HoverableTileState extends State<HoverableTile> {
       onTapUp: _handleTapUp,
       onTapCancel: _handleTapCancel,
       child: AnimatedContainer(
-        
         duration: const Duration(milliseconds: 150),
         padding: widget.padding,
         decoration: BoxDecoration(
-          color: _isTapped ? Colors.grey[300] : Colors.white, 
+          color: _isTapped ? Colors.grey[300] : Colors.white,
           borderRadius: BorderRadius.circular(12.0),
-          boxShadow: _isTapped
-              ? [BoxShadow(color: Colors.grey.withOpacity(0.7))]
-
-              : [],
+          boxShadow:
+              _isTapped ? [BoxShadow(color: Colors.grey.withOpacity(0.7))] : [],
         ),
         child: Row(
           children: [

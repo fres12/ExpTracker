@@ -1,15 +1,17 @@
 class Item {
   int? id;
-  String? nama;
-  String? expired;
-  String? kategori;
+  late String nama;
+  late String added;
+  late String expired;
+  late String kategori;
   String? catatan;
   itemMap() {
     var mapping = <String, dynamic>{};
     mapping['id'] = id;
-    mapping['nama'] = nama!;
-    mapping['expired'] = expired!;
-    mapping['kategori'] = kategori!;
+    mapping['added'] = added;
+    mapping['nama'] = nama;
+    mapping['expired'] = expired;
+    mapping['kategori'] = kategori;
     mapping['catatan'] = catatan!;
     return mapping;
   }

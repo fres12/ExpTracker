@@ -18,7 +18,7 @@ class DatabaseConnection {
 
   Future<void> _createDatabase(Database database, int version) async {
     String sql =
-        "CREATE TABLE items (id INTEGER PRIMARY KEY, nama TEXT, expired TEXT, kategori TEXT, catatan TEXT)";
+        "CREATE TABLE items (id INTEGER PRIMARY KEY, added TEXT, nama TEXT, expired TEXT, kategori TEXT, catatan TEXT)";
     await database.execute(sql);
   }
 }

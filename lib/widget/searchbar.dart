@@ -9,10 +9,10 @@ class Pencarian extends StatefulWidget {
       {required this.onSearch, required this.onClearFilters, super.key});
 
   @override
-  _PencarianState createState() => _PencarianState();
+  PencarianState createState() => PencarianState();
 }
 
-class _PencarianState extends State<Pencarian> {
+class PencarianState extends State<Pencarian> {
   final TextEditingController _pencariController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 

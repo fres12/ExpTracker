@@ -28,21 +28,21 @@ class TPosition {
   TPosition._();
 
   static const EdgeInsets paddingPageDefault = EdgeInsets.only(
-    left: 28,
-    right: 28,
+    left: 20,
+    right: 20,
     top: 16,
   );
 
   static const EdgeInsets marginPageDefault = EdgeInsets.only(
-    left: 28,
-    right: 28,
+    left: 20,
+    right: 20,
     top: 16,
     bottom: 28,
   );
 
   static const EdgeInsets marginPageDefault2 = EdgeInsets.only(
-    left: 28,
-    right: 28,
+    left: 20,
+    right: 20,
     bottom: 28,
   );
 
@@ -52,6 +52,8 @@ class TPosition {
   static const EdgeInsets topnavbar = EdgeInsets.only(
     left: 13,
     right: 13,
+    top: 45,
+    bottom: 10
   );
 
   static const EdgeInsets button = EdgeInsets.only(

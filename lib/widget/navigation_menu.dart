@@ -82,10 +82,14 @@ class NavigationMenu extends StatelessWidget {
 
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
+  final RxBool isSiExpActive = false.obs;
 
   final screens = [
     const Beranda(),
     const ListScreen(),
     const Info(),
   ];
+  void activateSiExp() {
+    isSiExpActive.value = true;
+  }
 }

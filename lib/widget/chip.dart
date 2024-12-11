@@ -1,13 +1,13 @@
 import '../style/settings.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../widget/navigation_menu.dart'; 
 
 enum ExpirationFilter { siExp, siWeek, siWTo3M, siMoreThan3 }
 
 class FilterChipExample extends StatefulWidget {
   final Function(Set<ExpirationFilter>) onFilterChanged;
-  //final GlobalKey<FilterChipExampleState> key;
 
-  //const FilterChipExample({required this.onFilterChanged, required this.key});
   const FilterChipExample({super.key, required this.onFilterChanged});
 
   @override
@@ -16,6 +16,9 @@ class FilterChipExample extends StatefulWidget {
 
 class FilterChipExampleState extends State<FilterChipExample> {
   ExpirationFilter? selectedFilter;
+
+  // Referensi ke NavigationController
+  final NavigationController navigationController = Get.find<NavigationController>();
 
   Color getChipColor(ExpirationFilter filter) {
     switch (filter) {
@@ -39,7 +42,21 @@ class FilterChipExampleState extends State<FilterChipExample> {
   }
 
   @override
-  Widget build(BuildContext context) {
+Widget build(BuildContext context) {
+  return Obx(() {
+    if (navigationController.isSiExpActive.value) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          setState(() {
+            selectedFilter = ExpirationFilter.siExp;
+            widget.onFilterChanged({ExpirationFilter.siExp});
+          });
+        }
+      });
+      // Reset `isSiExpActive` agar tidak terus-menerus mengaktifkan filter
+      navigationController.isSiExpActive.value = false;
+    }
+
     return Align(
       alignment: Alignment.topLeft,
       child: Column(
@@ -50,8 +67,7 @@ class FilterChipExampleState extends State<FilterChipExample> {
             child: Wrap(
               spacing: 8.0,
               runSpacing: 8.0,
-              children:
-                  ExpirationFilter.values.map((ExpirationFilter expFilter) {
+              children: ExpirationFilter.values.map((ExpirationFilter expFilter) {
                 return FilterChip(
                   label: Text(
                     _getFilterLabel(expFilter),
@@ -74,25 +90,24 @@ class FilterChipExampleState extends State<FilterChipExample> {
                   selectedColor: getChipColor(expFilter),
                   selected: selectedFilter == expFilter,
                   checkmarkColor: Colors.white,
-                  onSelected:
-                      selectedFilter == null || selectedFilter == expFilter
-                          ? (bool selected) {
-                              FocusScope.of(context).unfocus();
+                  onSelected: selectedFilter == null || selectedFilter == expFilter
+                      ? (bool selected) {
+                          FocusScope.of(context).unfocus();
 
-                              setState(() {
-                                if (selected) {
-                                  clearFilters();
-                                  selectedFilter = expFilter;
-                                } else {
-                                  selectedFilter = null;
-                                  clearFilters();
-                                }
-                                widget.onFilterChanged(selectedFilter != null
-                                    ? {selectedFilter!}
-                                    : <ExpirationFilter>{});
-                              });
+                          setState(() {
+                            if (selected) {
+                              clearFilters();
+                              selectedFilter = expFilter;
+                            } else {
+                              selectedFilter = null;
+                              clearFilters();
                             }
-                          : null,
+                            widget.onFilterChanged(selectedFilter != null
+                                ? {selectedFilter!}
+                                : <ExpirationFilter>{});
+                          });
+                        }
+                      : null,
                 );
               }).toList(),
             ),
@@ -101,7 +116,9 @@ class FilterChipExampleState extends State<FilterChipExample> {
         ],
       ),
     );
-  }
+  });
+}
+
 
   String _getFilterLabel(ExpirationFilter filter) {
     switch (filter) {

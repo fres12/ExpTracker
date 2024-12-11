@@ -161,6 +161,7 @@ class _BerandaState extends State<Beranda> {
                                 onPressed: () {
                                   final navigationController =
                                       Get.find<NavigationController>();
+                                  navigationController.activateSiExp();
                                   navigationController.selectedIndex.value = 1;
                                   Get.to(() => const ListScreen());
                                 },

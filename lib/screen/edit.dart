@@ -1,7 +1,7 @@
+import 'package:exptracker/models/db_item.dart';
 import '../style/settings.dart';
 import 'package:flutter/material.dart';
 import '../style/app_style.dart';
-import '../models/db_item.dart';
 import '../services/db_service.dart';
 import '../data/category.dart';
 
@@ -33,13 +33,19 @@ class _EditScreenState extends State<EditScreen> {
 
     _namaItemController.addListener(_validateFields);
     _dateController.addListener(_validateFields);
+    _catatanController.addListener(_validateFields);
   }
 
   void _validateFields() {
     setState(() {
       _isButtonEnabled = _namaItemController.text.isNotEmpty &&
           _dateController.text.isNotEmpty &&
-          _selectedCategory != null;
+          _selectedCategory != null && // Validasi kategori dropdown
+          (_catatanController.text != widget.item.catatan ||
+              _namaItemController.text != widget.item.nama ||
+              _dateController.text != widget.item.expired ||
+              _selectedCategory !=
+                  widget.item.kategori); // Validasi perubahan pada dropdown
     });
   }
 
@@ -47,7 +53,6 @@ class _EditScreenState extends State<EditScreen> {
   void dispose() {
     _namaItemController.dispose();
     _dateController.dispose();
-    _catatanController.dispose();
     super.dispose();
   }
 
@@ -56,20 +61,21 @@ class _EditScreenState extends State<EditScreen> {
     return Scaffold(
       backgroundColor: TColors.background,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(71),
+        preferredSize: const Size.fromHeight(71), // Tinggi AppBar
         child: Container(
           decoration: const BoxDecoration(
             color: Colors.white,
             border: Border(
               bottom: BorderSide(
-                color: TColors.outline,
-                width: 0.5,
+                color: TColors.outline, // Warna outline di bawah
+                width: 0.5, // Ketebalan outline
               ),
             ),
           ),
           padding: TPosition.topnavbar,
           child: Stack(
             children: [
+              // Teks di tengah
               Align(
                 alignment: Alignment.center,
                 child: Text(
@@ -77,11 +83,13 @@ class _EditScreenState extends State<EditScreen> {
                   style: AppStyle.header,
                 ),
               ),
+              // Ikon di kiri atas
               Align(
                 alignment: Alignment.centerLeft,
                 child: IconButton(
                   icon: const Icon(Icons.arrow_back),
                   onPressed: () {
+                    // Aksi untuk tombol back
                     Navigator.pop(context);
                   },
                 ),
@@ -167,15 +175,17 @@ class _EditScreenState extends State<EditScreen> {
               const SizedBox(height: 16),
 
               // Pilih Kategori Item
-              DropdownButtonFormField<String>(
+              DropdownButtonFormField<String?>(
                 value: _selectedCategory,
                 onChanged: (String? newValue) {
                   setState(() {
                     _selectedCategory = newValue;
+                    _validateFields();
                   });
                 },
-                items: categories.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
+                items:
+                    categories.map<DropdownMenuItem<String?>>((String value) {
+                  return DropdownMenuItem<String?>(
                     value: value,
                     child: Text(
                       value,
@@ -206,6 +216,7 @@ class _EditScreenState extends State<EditScreen> {
                 ),
                 dropdownColor: Colors.white,
               ),
+
               const SizedBox(height: 16),
 
               // Input Catatan Penyimpanan
@@ -232,6 +243,38 @@ class _EditScreenState extends State<EditScreen> {
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   prefixIcon: Icon(Icons.note, color: Colors.grey.shade500),
+                ),
+              ),
+              const SizedBox(height: 32),
+
+              // Tombol Simpan
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _isButtonEnabled
+                      ? () async {
+                          var item = Item();
+                          item.id = widget.item.id;
+                          item.added = widget.item.added;
+                          item.nama = _namaItemController.text;
+                          item.expired = _dateController.text;
+                          item.kategori = _selectedCategory!;
+                          item.catatan = _catatanController.text;
+                          var result = await _itemService.updateItem(item);
+                          if (result != null) {
+                            if (context.mounted) {
+                              Navigator.pop(context,
+                                  item); // Mengembalikan item yang diperbarui
+                            }
+                          }
+                        }
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: TColors.primary,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                  ),
+                  child: const Text('Simpan'),
                 ),
               ),
             ],

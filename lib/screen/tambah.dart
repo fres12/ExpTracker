@@ -4,7 +4,7 @@ import '../style/app_style.dart';
 import '../models/db_item.dart';
 import '../services/db_service.dart';
 import 'package:intl/intl.dart';
-import '../data/category.dart'; 
+import '../data/category.dart';
 
 class TambahScreen extends StatefulWidget {
   const TambahScreen({super.key});
@@ -170,6 +170,7 @@ class _TambahScreenState extends State<TambahScreen> {
                 onChanged: (String? newValue) {
                   setState(() {
                     _selectedCategory = newValue;
+                    _validateFields(); 
                   });
                 },
                 items: categories.map<DropdownMenuItem<String>>((String value) {
@@ -198,13 +199,11 @@ class _TambahScreenState extends State<TambahScreen> {
                     borderSide: BorderSide(color: TColors.outline, width: 0.5),
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
-
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   prefixIcon: Icon(Icons.category, color: Colors.grey.shade500),
                 ),
                 dropdownColor: Colors.white,
-
               ),
               const SizedBox(height: 16),
 
@@ -260,8 +259,7 @@ class _TambahScreenState extends State<TambahScreen> {
                               Navigator.pop(context, result);
                             }
                           } else {
-                            setState(() {
-                            }); // Refresh UI to show error
+                            setState(() {}); // Refresh UI to show error
                           }
                         }
                       : null,

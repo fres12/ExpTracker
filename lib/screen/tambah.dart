@@ -4,6 +4,7 @@ import '../style/app_style.dart';
 import '../models/db_item.dart';
 import '../services/db_service.dart';
 import 'package:intl/intl.dart';
+import '../data/category.dart';
 
 class TambahScreen extends StatefulWidget {
   const TambahScreen({super.key});
@@ -15,25 +16,25 @@ class TambahScreen extends StatefulWidget {
 class _TambahScreenState extends State<TambahScreen> {
   final TextEditingController _namaItemController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
-  final TextEditingController _kategoriItemController = TextEditingController();
   final TextEditingController _catatanController = TextEditingController();
   bool _isButtonEnabled = false;
 
   final _itemService = ItemService();
+
+  String? _selectedCategory;
 
   @override
   void initState() {
     super.initState();
     _namaItemController.addListener(_validateFields);
     _dateController.addListener(_validateFields);
-    _kategoriItemController.addListener(_validateFields);
   }
 
   void _validateFields() {
     setState(() {
       _isButtonEnabled = _namaItemController.text.isNotEmpty &&
           _dateController.text.isNotEmpty &&
-          _kategoriItemController.text.isNotEmpty;
+          _selectedCategory != null;
     });
   }
 
@@ -41,7 +42,7 @@ class _TambahScreenState extends State<TambahScreen> {
   void dispose() {
     _namaItemController.dispose();
     _dateController.dispose();
-    _kategoriItemController.dispose();
+    _catatanController.dispose();
     super.dispose();
   }
 
@@ -163,10 +164,24 @@ class _TambahScreenState extends State<TambahScreen> {
               ),
               const SizedBox(height: 16),
 
-              // Input Kategori Item
-              TextField(
-                controller: _kategoriItemController,
-                style: AppStyle.biasa,
+              // Pilih Kategori Item
+              DropdownButtonFormField<String>(
+                value: _selectedCategory,
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedCategory = newValue;
+                    _validateFields(); 
+                  });
+                },
+                items: categories.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(
+                      value,
+                      style: AppStyle.biasa,
+                    ),
+                  );
+                }).toList(),
                 decoration: InputDecoration(
                   labelStyle: AppStyle.subtitle,
                   filled: true,
@@ -188,6 +203,7 @@ class _TambahScreenState extends State<TambahScreen> {
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   prefixIcon: Icon(Icons.category, color: Colors.grey.shade500),
                 ),
+                dropdownColor: Colors.white,
               ),
               const SizedBox(height: 16),
 
@@ -225,7 +241,6 @@ class _TambahScreenState extends State<TambahScreen> {
                 child: ElevatedButton(
                   onPressed: _isButtonEnabled
                       ? () async {
-                          //KODE tambah di sini
                           var item = Item();
 
                           DateTime now = DateTime.now();
@@ -235,15 +250,16 @@ class _TambahScreenState extends State<TambahScreen> {
                           item.added = formattedDate;
                           item.nama = _namaItemController.text;
                           item.expired = _dateController.text;
-                          item.kategori = _kategoriItemController.text;
                           item.catatan = _catatanController.text;
-                          var result = await _itemService.saveItem(item);
-                          if (context.mounted) {
-                            Navigator.pop(context, result);
-                            //    ScaffoldMessenger.of(context)
-                            //        .showSnackBar(const SnackBar(
-                            //      content: Text("Berhasil ditambahkan."),
-                            //    ));
+
+                          if (_selectedCategory != null) {
+                            item.kategori = _selectedCategory!;
+                            var result = await _itemService.saveItem(item);
+                            if (context.mounted) {
+                              Navigator.pop(context, result);
+                            }
+                          } else {
+                            setState(() {}); // Refresh UI to show error
                           }
                         }
                       : null,

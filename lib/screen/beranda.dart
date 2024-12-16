@@ -160,8 +160,8 @@ class _BerandaState extends State<Beranda> {
                                 ),
                                 onPressed: () {
                                   final navigationController =
-                                      Get.find<NavigationController>();
-                                  navigationController.activateSiExp();
+                                  Get.find<NavigationController>();
+                                  navigationController.activateSiWeek();
                                   navigationController.selectedIndex.value = 1;
                                   Get.to(() => const ListScreen());
                                 },
@@ -191,41 +191,56 @@ class _BerandaState extends State<Beranda> {
                     children: [
                       Expanded(
                         flex: 4,
-                        child: Container(
-                          padding: TPosition.containerkedaluwarsa,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border:
-                                Border.all(color: TColors.outline, width: 0.5),
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Kedaluwarsa',
-                                style: AppStyle.containersub,
-                              ),
-                              const SizedBox(height: 20),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.delete,
-                                    color: Colors.blue,
-                                    size: 24,
-                                  ),
-                                  const SizedBox(width: 5),
-                                  Flexible(
-                                    child: Text(
-                                      '${_itemList.where((item) => DateTime.parse(item.expired).isBefore(DateTime.now())).length} Item',
-                                      style: AppStyle.containertitle,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
+                        child: GestureDetector(
+                          onTap: () {
+                            final navigationController =
+                                Get.find<NavigationController>();
+                            navigationController.activateSiExp();
+                            navigationController.selectedIndex.value = 1;
+                            Get.to(() => const ListScreen());
+                          },
+                          child: Container(
+                            padding: TPosition.containerkedaluwarsa,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                  color: TColors.outline, width: 0.5),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Kedaluwarsa',
+                                  style: AppStyle.containersub,
+                                ),
+                                const SizedBox(height: 20),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.delete,
+                                      color: Colors.blue,
+                                      size: 24,
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    const SizedBox(width: 5),
+                                    Flexible(
+                                      child: Text(
+                                        '${_itemList.where((item) => DateTime.parse(item.expired).isBefore(DateTime.now())).length} Item ',
+                                        style: AppStyle.containertitle,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    // Menambahkan ikon panah ke kanan
+                                    const Icon(
+                                      Icons.arrow_forward,
+                                      color: TColors.subtitle,
+                                      size: 12,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

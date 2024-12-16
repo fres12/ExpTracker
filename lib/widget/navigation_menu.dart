@@ -83,6 +83,7 @@ class NavigationMenu extends StatelessWidget {
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final RxBool isSiExpActive = false.obs;
+  final RxBool isSiWeekActive = false.obs;
 
   final screens = [
     const Beranda(),
@@ -91,5 +92,9 @@ class NavigationController extends GetxController {
   ];
   void activateSiExp() {
     isSiExpActive.value = true;
+  }
+
+   void activateSiWeek() {
+    isSiWeekActive.value = true;
   }
 }

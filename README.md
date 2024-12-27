@@ -1,16 +1,14 @@
 # ExpTracker
 
-A new Flutter project.
+![Tekberrrrrrrr!](https://github.com/user-attachments/assets/9e3c2eed-869a-40a6-bd12-94247a7c13a3)
 
-## Getting Started
+## About this project
+ExpTracker is an effective expiration date management tool that helps you minimize waste and maximize the use of your belongings. By providing expiration date tracking and timely reminders, ExpTracker empowers users to take proactive steps before items expire.
 
-This project is a starting point for a Flutter application.
+## Project Documentation
 
-A few resources to get you started if this is your first Flutter project:
+[Feature documentation](https://www.canva.com/design/DAGZSTAcl2w/qdaxUbyGy1exxx4pWP4EIg/edit?utm_content=DAGZSTAcl2w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Tools
+- Flutter: Front-end mobile development
+- SQLite: Back-end with local database
